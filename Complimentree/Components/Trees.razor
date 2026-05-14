@@ -54,16 +54,27 @@
         Compliments = new List<Compliment>()
     }
 };
-
+    public string inputCompliments;
     public Compliment AddCompliment(int id)
     {
         Tree thisTree = trees.FirstOrDefault(tree => tree.TreeId == id);
-        Compliment newCompliment = Compliment.GetCompliment();
-        thisTree.Compliments.Add(newCompliment);
-        return newCompliment;
+
+        if (string.IsNullOrEmpty(inputCompliments))
+        {
+            Compliment newCompliment = Compliment.GetCompliment();
+            thisTree.Compliments.Add(newCompliment);
+            return newCompliment;
+        }
+        int customComplimentId = Compliment.ComplimentsList.Count + 1;
+        var customCompliment = new Compliment(customComplimentId, inputCompliments);
+        thisTree.Compliments.Add(customCompliment);
+        inputCompliments = "";
+        return customCompliment;
     }
 
 }
+<label for="inputCompliment">Give a custom compliment:</label>
+<input @bind-value="inputCompliments" id="inputCompliment" name="customCompliment" aria-label="Give a custom compliment:" type="text" />
 <ul>
     @foreach (var tree in trees)
     {
@@ -76,6 +87,7 @@
                     {
                         <h4>This poor tree doesn't have any compliments</h4>
                         <button @onclick="() => AddCompliment(tree.TreeId)">Give me my first compliment</button>
+
                     }
                     @if(tree.Compliments.Count != 0)
                     {
@@ -89,6 +101,7 @@
                             }
                         </ul>
                         <button @onclick="() => AddCompliment(tree.TreeId)">Give me another compliment</button>
+
                     }
                 </li>
             </ul>
