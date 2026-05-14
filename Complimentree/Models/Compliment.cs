@@ -31,10 +31,12 @@
 
         public static Compliment GetCompliment()
         {
-            Console.WriteLine("Test1");
             Compliment thisCompliment = ComplimentsList.FirstOrDefault(c => c.ComplimentId == counter);
             counter += 1;
-            Console.WriteLine("Test2");
+            if (counter > ComplimentsList.Count)
+            {
+                counter = 1;
+            }
             return thisCompliment;
         }
     }

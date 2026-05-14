@@ -1,5 +1,7 @@
 ﻿@using Complimentree.Models;
 
+@rendermode InteractiveServer
+
 <h2>Trees</h2>
 
 @code {
@@ -55,7 +57,6 @@
 
     public Compliment AddCompliment(int id)
     {
-        Console.WriteLine("Test3");
         Tree thisTree = trees.FirstOrDefault(tree => tree.TreeId == id);
         Compliment newCompliment = Compliment.GetCompliment();
         thisTree.Compliments.Add(newCompliment);
@@ -74,7 +75,7 @@
                     @if (tree.Compliments.Count == 0)
                     {
                         <h4>This poor tree doesn't have any compliments</h4>
-                        <button>Give me my first compliment</button>
+                        <button @onclick="() => AddCompliment(tree.TreeId)">Give me my first compliment</button>
                     }
                     @if(tree.Compliments.Count != 0)
                     {
