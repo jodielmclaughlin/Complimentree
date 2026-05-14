@@ -12,7 +12,8 @@
         Location = "Lake District",
         Size = "Large",
         Species = "Oak",
-        Compliments = new List<Compliment>()
+        Compliments = new List<Compliment>(){new Compliment(1, "You are a nice tree!")},
+
     },
     new Tree
     {
@@ -60,6 +61,10 @@
             <ul>
                 <li>
                     <h4>Species: @tree.Species</h4>
+                    @foreach(var compliment in tree.Compliments)
+                    {
+                        <h4>Compliment: @compliment.Text</h4>
+                    }
                 </li>
             </ul>
         </li>
