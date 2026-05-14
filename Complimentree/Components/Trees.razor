@@ -52,6 +52,16 @@
         Compliments = new List<Compliment>()
     }
 };
+
+    public Compliment AddCompliment(int id)
+    {
+        Console.WriteLine("Test3");
+        Tree thisTree = trees.FirstOrDefault(tree => tree.TreeId == id);
+        Compliment newCompliment = Compliment.GetCompliment();
+        thisTree.Compliments.Add(newCompliment);
+        return newCompliment;
+    }
+
 }
 <ul>
     @foreach (var tree in trees)
@@ -64,18 +74,21 @@
                     @if (tree.Compliments.Count == 0)
                     {
                         <h4>This poor tree doesn't have any compliments</h4>
+                        <button>Give me my first compliment</button>
                     }
-                    @if(tree.Compliments.Count != 0){
+                    @if(tree.Compliments.Count != 0)
+                    {
                         <h4>Compliments:</h4>
+                        <ul>
+                            @foreach (var compliment in tree.Compliments)
+                            {
+                                <li>
+                                    <h5>Compliment: @compliment.Text</h5>
+                                </li>
+                            }
+                        </ul>
+                        <button @onclick="() => AddCompliment(tree.TreeId)">Give me another compliment</button>
                     }
-                    <ul>
-                        @foreach (var compliment in tree.Compliments)
-                        {
-                            <li>
-                                <h5>Compliment: @compliment.Text</h5>
-                            </li>
-                        }
-                    </ul>
                 </li>
             </ul>
         </li>

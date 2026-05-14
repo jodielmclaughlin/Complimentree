@@ -4,7 +4,7 @@
     {
         public int ComplimentId { get; set; }
         public string Text { get; set; }
-        public static int counter = 0;
+        public static int counter = 1;
 
         public Compliment(int complimentId, string text)
         {
@@ -31,8 +31,10 @@
 
         public static Compliment GetCompliment()
         {
-            Compliment thisCompliment = ComplimentsList[counter];
+            Console.WriteLine("Test1");
+            Compliment thisCompliment = ComplimentsList.FirstOrDefault(c => c.ComplimentId == counter);
             counter += 1;
+            Console.WriteLine("Test2");
             return thisCompliment;
         }
     }
