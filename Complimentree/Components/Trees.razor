@@ -1,0 +1,69 @@
+﻿@using Complimentree.Models;
+
+<h2>Trees</h2>
+
+@code {
+    List<Tree> trees = new List<Tree>
+{
+    new Tree
+    {
+        TreeId = 1,
+        Name = "Oakley",
+        Location = "Lake District",
+        Size = "Large",
+        Species = "Oak",
+        Compliments = new List<Compliment>()
+    },
+    new Tree
+    {
+        TreeId = 2,
+        Name = "Willow Whisper",
+        Location = "Carlisle Park",
+        Size = "Medium",
+        Species = "Willow",
+        Compliments = new List<Compliment>()
+    },
+    new Tree
+    {
+        TreeId = 3,
+        Name = "Pine Prime",
+        Location = "Sherwood Forest",
+        Size = "Tall",
+        Species = "Pine",
+        Compliments = new List<Compliment>()
+    },
+    new Tree
+    {
+        TreeId = 4,
+        Name = "Cherry Bloom",
+        Location = "Kyoto Gardens",
+        Size = "Small",
+        Species = "Cherry Blossom",
+        Compliments = new List<Compliment>()
+    },
+    new Tree
+    {
+        TreeId = 5,
+        Name = "Maple Majesty",
+        Location = "Highland Trail",
+        Size = "Medium",
+        Species = "Maple",
+        Compliments = new List<Compliment>()
+    }
+};
+}
+<ul>
+    @foreach (var tree in trees)
+    {
+        <li>
+            <h3>@tree.Name</h3>
+            <ul>
+                <li>
+                    <h4>Species: @tree.Species</h4>
+                </li>
+            </ul>
+        </li>
+    }
+
+</ul>
+
