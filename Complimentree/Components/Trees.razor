@@ -61,10 +61,21 @@
             <ul>
                 <li>
                     <h4>Species: @tree.Species</h4>
-                    @foreach(var compliment in tree.Compliments)
+                    @if (tree.Compliments.Count == 0)
                     {
-                        <h4>Compliment: @compliment.Text</h4>
+                        <h4>This poor tree doesn't have any compliments</h4>
                     }
+                    @if(tree.Compliments.Count != 0){
+                        <h4>Compliments:</h4>
+                    }
+                    <ul>
+                        @foreach (var compliment in tree.Compliments)
+                        {
+                            <li>
+                                <h5>Compliment: @compliment.Text</h5>
+                            </li>
+                        }
+                    </ul>
                 </li>
             </ul>
         </li>
